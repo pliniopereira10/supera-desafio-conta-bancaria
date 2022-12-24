@@ -37,44 +37,49 @@
 
 ## 💎 Diagrama entidade relacionamento.
 
-![diagram-transactional-account](https://github.com/pliniopereira10/images/blob/65226d049ad83c184ce02f6ae21747dde6fd2fc4/diagram-images/diagram-transactional-account.png)
+![diagram-transactional-account](https://github.com/pliniopereira10/images/blob/38d268f4536ab11ddb6112fd6536ffe530f687a5/diagram-images/diagram-transaction-account.png)
 
 
 ## :scroll: Script SQL
 
 ```sql
-CREATE TABLE conta
+CREATE TABLE account
 (
-    id_conta IDENTITY NOT NULL PRIMARY KEY,
-    nome_responsavel VARCHAR(50) NOT NULL
+    account_id IDENTITY NOT NULL PRIMARY KEY,
+    account_holder VARCHAR(50) NOT NULL
 );
 
 
-CREATE TABLE transferencia
+CREATE TABLE transaction
 (
-    id IDENTITY NOT NULL PRIMARY KEY,
-    data_transferencia TIMESTAMP WITH TIME ZONE NOT NULL,
-    valor NUMERIC (20,2) NOT NULL,
-    tipo VARCHAR(15) NOT NULL,
-    nome_operador_transacao VARCHAR (50),
-    conta_id INT NOT NULL,
+    transaction_id IDENTITY NOT NULL PRIMARY KEY,
+    transfer_date TIMESTAMP WITH TIME ZONE NOT NULL,
+    amount NUMERIC (20,2) NOT NULL,
+    type VARCHAR(15) NOT NULL,
+    transaction_holder VARCHAR (50),
+    account_id INT NOT NULL,
 
-        CONSTRAINT FK_CONTA
-        FOREIGN KEY (conta_id)
-        REFERENCES conta(id_conta)
+        CONSTRAINT FK_ACCOUNT
+        FOREIGN KEY (account_id)
+        REFERENCES account(account_id)
 );
 
-INSERT INTO conta (id_conta, nome_responsavel) VALUES (1,'Fulano');
-INSERT INTO conta (id_conta, nome_responsavel) VALUES (2,'Sicrano');
+INSERT INTO account (account_id, account_holder) VALUES (1,'Fulano');
+INSERT INTO account (account_id, account_holder) VALUES (2,'Sicrano');
 
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (1,'2019-01-01 12:00:00+03',30895.46,'DEPOSITO', null, 1);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (2,'2019-02-03 09:53:27+03',12.24,'DEPOSITO', null,2);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (3,'2019-05-04 08:12:45+03',-500.50,'SAQUE', null,1);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (4,'2019-08-07 08:12:45+03',-530.50,'SAQUE', null,2);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (5,'2020-06-08 10:15:01+03',3241.23,'TRANSFERENCIA', 'Beltrano',1);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (6,'2021-04-01 12:12:04+03',25173.09,'TRANSFERENCIA', 'Ronnyscley',2);
+INSERT INTO transaction (transaction_id,transfer_date, amount, type, transaction_operator_name, account_id) VALUES (1,'2019-01-01 12:00:00+03',30895.46,'DEPOSITO', null, 1);
+INSERT INTO transaction (transaction_id,transfer_date, amount, type, transaction_operator_name, account_id) VALUES (2,'2019-02-03 09:53:27+03',12.24,'DEPOSITO', null,2);
+INSERT INTO transaction (transaction_id,transfer_date, amount, type, transaction_operator_name, account_id) VALUES (3,'2019-05-04 08:12:45+03',-500.50,'SAQUE', null,1);
+INSERT INTO transaction (transaction_id,transfer_date, amount, type, transaction_operator_name, account_id) VALUES (4,'2019-08-07 08:12:45+03',-530.50,'SAQUE', null,2);
+INSERT INTO transaction (transaction_id,transfer_date, amount, type, transaction_operator_name, account_id) VALUES (5,'2020-06-08 10:15:01+03',3241.23,'TRANSFERENCIA', 'Beltrano',1);
+INSERT INTO transaction (transaction_id,transfer_date, amount, type, transaction_operator_name, account_id) VALUES (6,'2021-04-01 12:12:04+03',25173.09,'TRANSFERENCIA', 'Ronnyscley',2);
 ```
 
+
+
+## <img src="https://github.com/pliniopereira10/images/blob/4defd3266623c190fe9bade36bdbfee691163967/asstes-images/application.png" alt="application.png" style="width:25px;" /> Layout da interface do usuário
+
+![layout-extrato-bancario](https://github.com/pliniopereira10/images/blob/4a8b4d658937af24f474b792f4a4b7fad8d27d5e/frontend-layout/layout-extrato-bancario.png)
 
 ***
 
